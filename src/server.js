@@ -13,11 +13,20 @@ const port = process.env.PORT || 3000;
 
 // The main page of our website
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+
+  res.render('welcome', {
+      name: req.query.name || "World",
+  });
 });
 
 // Start listening for network connections
 app.listen(port);
 
+app.use(express.static('public'));
+
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+
 // Printout for readability
 console.log("Server Started!");
+
